@@ -2,26 +2,35 @@
 var generateBtn = document.querySelector("#generate");
 
 // characters, strings from ASCII
-var lowerCharacters = "abcdefghijklmnopqrstuvwxyz"; // String.fromCharCode(97, 122);
-var upperCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // String.fromCharCode(65, 90);
-var numberCharacters = "0123456789"; //String.fromCharCode(48, 57);
+var lowerCharacters = "abcdefghijklmnopqrstuvwxyz";
+var upperCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numberCharacters = "0123456789";
 var specialCharacters = "!@#$%^&*_-+=";
 
 // Write password to the #password input
 function writePassword() {
-  var password = characterSelect(); // should be generatePassword()
+  characterLengthSelect();
+  characterSelect();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
 
-//Generate password prompts user to select Characters
-function generatePassword() {}
+// not working currently
+// var generatePassword = (characterAmount, characters) => {
+//   let result = "";
+//   for (let i = 0; i < characterAmount; i++) {
+//     password += characters.charAt(
+//       Math.floor(Math.random() * characters.length)
+//     );
+//   }
+//   return result;
+// };
 
 // character selection
-var characterSelect = function () {
+var characterLengthSelect = function () {
   let characterAmount = "";
-  let characters = "";
   var promptCharacterLength = window.prompt(
     "How many Characters would you like to include? Please enter a number from 8-128."
   );
@@ -35,7 +44,11 @@ var characterSelect = function () {
     return characterSelect();
   } else characterAmount = promptCharacterLength;
   console.log(characterAmount);
+  return characterAmount;
+};
 
+var characterSelect = function () {
+  let characters = "";
   var promptLowercases = window.confirm(
     "would you like to include lower case letters?"
   );
@@ -65,7 +78,7 @@ var characterSelect = function () {
     (characters += specialCharacters),
       console.log("we're including numbers!", characters);
   } else console.log("we're not including uppercase", characters);
-  return characterAmount, characters;
+  return characters;
 };
 
 // Add event listener to generate button
