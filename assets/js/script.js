@@ -18,15 +18,15 @@ function writePassword() {
 }
 
 // not working currently
-// var generatePassword = (characterAmount, characters) => {
-//   let result = "";
-//   for (let i = 0; i < characterAmount; i++) {
-//     password += characters.charAt(
-//       Math.floor(Math.random() * characters.length)
-//     );
-//   }
-//   return result;
-// };
+var generatePassword = (characterAmount, characters) => {
+  let result = "";
+  for (let i = 0; i < characterAmount; i++) {
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+  }
+  return result;
+};
 
 // character selection
 var characterLengthSelect = function () {
