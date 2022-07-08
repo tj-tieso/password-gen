@@ -7,25 +7,16 @@ var upperCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberCharacters = "0123456789";
 var specialCharacters = "!@#$%^&*_-+=";
 
-// Write password to the #password input
-function writePassword() {
-  characterLengthSelect();
-  characterSelect();
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
-
-// not working currently
-var generatePassword = (characterAmount, characters) => {
+var generatePassword = () => {
   let result = "";
+  let characterAmount = characterLengthSelect();
+  let characters = characterSelect();
+
   for (let i = 0; i < characterAmount; i++) {
-    password += characters.charAt(
-      Math.floor(Math.random() * characters.length)
-    );
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
-  return result;
+  console.log(result);
+  document.getElementById("password").value = result;
 };
 
 // character selection
@@ -41,7 +32,7 @@ var characterLengthSelect = function () {
     promptCharacterLength > 128
   ) {
     window.alert("Please enter a valid answer. Please try again");
-    return characterSelect();
+    return characterLengthSelect();
   } else characterAmount = promptCharacterLength;
   console.log(characterAmount);
   return characterAmount;
@@ -82,4 +73,4 @@ var characterSelect = function () {
 };
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
